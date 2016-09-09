@@ -4,4 +4,16 @@
   (head
     (link :href "app.css" :rel "stylesheet"))
   (body
-    (h1 "Hello Hoplon!")))
+    (h1 "TODO List")
+    (div
+     (label
+      (input :type "checkbox")
+      "Buy groceries"))
+    (div
+     (label
+      (input :type "checkbox")
+      "Cook dinner"))
+    (div
+     (label
+      (input :type "checkbox")
+      "Wash dishes"))))
