@@ -7,10 +7,24 @@
                   [true "Cook dinner"]
                   [nil "Wash dishes"]]))
 
+(defn add-item [text]
+  (swap! items #(conj % [false text])))
+
 (html
   (head
     (link :href "app.css" :rel "stylesheet"))
   (body
     (h1 "TODO List")
+    (div
+     (let [new-item-text (cell "")]
+       (form 
+        (input :type "text"
+               :css {:width "100px"}
+               :change #(reset! new-item-text @%)
+               :value new-item-text)
+        (button :type "submit"
+                :click #(dosync (add-item @new-item-text)
+                                (reset! new-item-text ""))
+                "Add"))))
     (for-tpl [[checked? text] items]
              (todo-item checked? text))))
